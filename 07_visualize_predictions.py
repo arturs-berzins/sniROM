@@ -1,7 +1,14 @@
 """
-See predict.py
-Functionalities: 
-Based on https://stackoverflow.com/a/30658723
+Visualize the results from predict.py by exporting to .vtp, which can then be
+viewed in paraview.
+Currently, this script is written specificaly for the skewed lid driven cavity
+benchmark, as indicated by the particular deform_mxyz() function describing the
+parametrized geometry, as well as how velocity and pressure data are 
+extracted from the snapshots.
+However, this code can be reused for other problems with minor adjustments, as
+long as the according mxyz and mien files are provided under /visualization.
+
+Code structure is derived from https://stackoverflow.com/a/30658723
 """
 import config
 import utils
@@ -9,15 +16,12 @@ from tvtk.api import tvtk, write_data
 import numpy as np
 from os.path import join
 
-nn = 10000  # number of nodes
-ne = 9801   # number of elements
-nsd = 2     # number of space dimensions
-ndf = 3     # number of degrees of freedom
-nel = 4     # number of nodes forming an element
+## Information about the mesh
+from visualization.info import *
 
 dataset = 'test_Hesthaven_Ubbiali' 
 types = ['truth', 'pred', 'proj', 'delta']
-idxs = [0, 1, 2]  # index of sample
+idxs = [0, 1, 2]
 
 def main():
     ## MXYZ: node coordinates

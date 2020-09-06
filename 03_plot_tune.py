@@ -1,4 +1,5 @@
 """
+Plot the results of FNN tuning as in Figures 5, 11, 17.
 """
 import config
 import utils

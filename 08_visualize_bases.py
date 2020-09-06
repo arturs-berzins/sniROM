@@ -1,5 +1,8 @@
 """
-
+Visualize the bases found during POD by exporting to .vtp, which can then be
+viewed in paraview.
+For problems other than skewed lid driven cavity, adjust how the components
+are extracted from the bases (currently velocity and pressur in lines 43-54).
 """
 import config
 import utils
@@ -8,11 +11,8 @@ import numpy as np
 import os
 join = os.path.join
 
-nn = 10000  # number of nodes
-ne = 9801   # number of elements
-nsd = 2     # number of space dimensions
-ndf = 3     # number of degrees of freedom
-nel = 4     # number of nodes forming an element
+## Information about the mesh
+from visualization.info import *
 
 L = 10      # number of first L bases to visualize
 

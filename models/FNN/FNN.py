@@ -23,9 +23,9 @@ class FNN:
     def train(self, config):
         ## Internal config
         self.config = {}
-        self.config['num_epochs']       = 500
+        self.config['num_epochs']       = 5000
         self.config['n_hidden']         = 2
-        self.config['hidden_size']      = 20
+        self.config['hidden_size']      = 40
         self.config['batch_size']       = 10
         self.config['lr']               = 0.01
         self.config['regularization']   = 1e-10

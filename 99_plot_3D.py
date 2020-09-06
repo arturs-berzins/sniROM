@@ -10,13 +10,14 @@ from matplotlib import pyplot, cm
 from matplotlib.widgets import Slider
 from mpl_toolkits.mplot3d import Axes3D
 
+# Plot along these two parameters:
+parameter_indices_to_plot = [0,1]
+# Use this model:
+model_key = 'FNN'
+
 def main():
     parameters = {}
-    # Plot along these two parameters:
-    parameters['axes'] = [0,1]
-    # Use this model:
-    model_key = 'FNN'
-    
+    parameters['axes'] = parameter_indices_to_plot
     assert len(parameters['axes']) == 2, \
         'Plot_3D can only plot over 2 parameters.'
     assert all(0<=p<=config.P-1 for p in parameters['axes']), \

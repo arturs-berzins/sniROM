@@ -1,4 +1,11 @@
-import config, utils
+"""
+Make predictions and store those on the disk for visualization (or further
+evaluation). Currently, this script uses the test_Hesthaven_Ubbiali set as in
+Figure 8. For different problems the dataset and idxs of interest must be
+specified accordingly.
+"""
+import config
+import utils
 import numpy as np
 import pandas as pd
 import os
@@ -7,6 +14,7 @@ join = os.path.join
 model_key = 'FNN'
 dataset = 'test_Hesthaven_Ubbiali'
 idxs = [0, 1, 2]
+
 features = utils.load_features(dataset)
 features = features[idxs]
 

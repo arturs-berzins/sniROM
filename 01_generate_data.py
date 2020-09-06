@@ -1,3 +1,8 @@
+"""
+Converts the dataset into features and targets for the regression models.
+Stores these, as well as the feature scaler, POD matrices and projection errors
+under /data. See Section 2.
+"""
 import config
 import utils
 import numpy as np
@@ -13,7 +18,7 @@ def main():
     parameters = {}
     for dataset in config.datasets:
         # shape: N_h x N
-        # #DOFs x #snapshots
+        # i.e. #DOFs x #snapshots
         snapshots[dataset]  = utils.load_snapshots(dataset) 
         parameters[dataset] = utils.load_parameters(dataset)
     

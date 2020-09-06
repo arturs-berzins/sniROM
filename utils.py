@@ -51,7 +51,6 @@ def set_up_model_directories():
         for component in components:
             path = join(model_dir,model_key,component)
             os.makedirs(path, exist_ok=True)
-        
 
 def reduce(v, component):
     m = v.shape[0] // len(mask)
@@ -90,12 +89,12 @@ def process(L, component):
         return num_snapshots['train']
 
 def save_parameters(parameters, dataset):
-    path = join('dataset',dataset,'parameters')
+    path = join('dataset',dataset,'parameters.txt')
     np.savetxt(path, parameters)
 
 def load_parameters(dataset):
-    path = join('dataset',dataset,'parameters')
-    return np.loadtxt(path, parameters)
+    path = join('dataset',dataset,'parameters.txt')
+    return np.loadtxt(path)
 
 def save_snapshot(snapshot, dataset, index):
     path = join('dataset',dataset,f'truth_{index}')

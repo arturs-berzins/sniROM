@@ -1,3 +1,9 @@
+"""
+Use the trained models to evaluate the performance on the previously unseed test
+dataset.
+Loading the FNN automatically detects the best hyperparameter configuration from
+the tuning.
+"""
 import config
 import utils
 import numpy as np

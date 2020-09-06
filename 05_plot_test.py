@@ -1,5 +1,5 @@
 """
-
+Plot the performance on the test set as in Figures 6, 12, 18.
 """
 
 import config

@@ -1,8 +1,15 @@
+"""
+Trains or tunes the models according to the specification. In the paper, we only
+tune the FNN.
+ray.tune start a parallel process for each configuration, so the tuning is
+performed pretty quickly, if many processor threads are available. However,
+modifying the tune_config can alleviate the computational burden.
+"""
 import config
 import utils
 import numpy as np
 import torch
-import os
+from os.path import join
 from ray import tune
 
 utils.set_up_model_directories()
@@ -10,12 +17,12 @@ utils.set_up_model_directories()
 models_to_be_trained = {'RBF','GPR'}
 models_to_be_tuned   = {'FNN'}
 
-# define the configuration for hyperparameter tuning based on Ray Tune
+# define the configuration for hyperparameter tuning
 tune_config = {}
-tune_config['FNN'] = { 
-                      'lr':             tune.grid_search((10**np.linspace(-4,0,3)).tolist()),
-                      'hidden_size':    tune.grid_search(np.linspace(10,50,3,dtype=int).tolist())
-                      }
+tune_config['FNN'] = {
+ 'lr':          tune.grid_search((10**np.linspace(-4,0,5)).tolist()),
+ 'hidden_size': tune.grid_search(np.linspace(10,50,9,dtype=int).tolist())
+  }
 assert set(tune_config.keys()) == set(models_to_be_tuned), "tune_config is incomplete"
 
 def main():
@@ -50,7 +57,7 @@ def main():
             ## Tune using the defined tuning config
             analysis = tune.run(
                 train_wrapper,
-                local_dir= os.path.join(utils.model_dir, model_key),
+                local_dir= join(utils.model_dir, model_key),
                 name=component,
                 config=tune_config[model_key],
                 stop={'time_total_s': 1800}
