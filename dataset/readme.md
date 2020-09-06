@@ -8,17 +8,18 @@ Current `utils` expects the dataset to be structured as follows. For each sub-se
 Each sub-set must contain:
 - `parameters.txt`: containing an array of parameter samples of dimension `N_set x N_d`.
 - `truth_i` for `i=0,..,N_subset`: snapshots in binary consisting of `numpy.float64` data types (C doubles) using big-endian byteorder. Each snapshot can be loaded into a `numpy` vector via e.g. `np.load('dataset/train/truth_0', np.float64()).byteswap()` (see `utils.load_snapshot()`). Each vector contains all degrees of freedom. E.g. for a steady problem and components `u`, `v`, `p` (such as the skewed lid-driven-cavity) the vector is as follows:
-`u` \ 
-`v` &nbsp;&nbsp; node `0`
-`p` /
-`u`  \ 
-`v` &nbsp;&nbsp; node `1`
-`p` /
-.
-.
-.
-`u`  \ 
-`v` &nbsp;&nbsp; node `#nodes-1`
-`p` /
 
+`u` \ <br />
+`v` &nbsp;&nbsp; node `0` <br />
+`p` / <br />
+`u`  \ <br />
+`v` &nbsp;&nbsp; node `1` <br />
+`p` / <br />
+. <br />
+. <br />
+. <br />
+`u`  \ <br />
+`v` &nbsp;&nbsp; node `#nodes-1` <br />
+`p` / <br />
+<br />
 For time-dependent problems, this pattern is repeated for every time step, starting at the initial condition. This corresponds to a `#components*#nodes*(#timesteps+1)` vector.
