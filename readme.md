@@ -38,6 +38,6 @@ Versions of dependencies should not be ignored.
 After a successful setup, simply run the scripts sequentially from the project root folder.
 
 ## Applying to your dataset
-The code should be easily transferable to other datasets. The dataset must be provided in the format described in [`dataset/readme.md`](dataset/readme.md) and the [`config.py`](config.py) must be adjusted accordingly. This is enough to run the core scripts `01`-`05`.
+The code should be easily transferable to other datasets. The dataset must be provided in the format described in [`dataset/readme.md`](dataset/readme.md) and the [`config.py`](config.py) must be adjusted accordingly. This is enough to run the core scripts `01`-`05` and all plotting scripts `99`.
 
 If you also wish to visualize the predictions to ParaView, you will need to provide the mesh representation under [`visualization/`](visualization) and possibly modify script [`07`](07_visualize_predictions.py) depending on the specific problem.
