@@ -64,7 +64,6 @@ fig.subplots_adjust(bottom=0, top=1, left=0, right=1, wspace=0)
 
 for idx_ax, component in enumerate(config.components):
     df = df_all[component]
-
     lrs = df['config/lr']
     nhs = df['config/hidden_size']
     ls  = df['mean_loss']

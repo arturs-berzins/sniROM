@@ -2,7 +2,7 @@ pandas==0.25.3
 numpy==1.17.3
 scipy==1.4.1
 matplotlib==3.3.1
-scikit_learn==0.23.2
+scikit_learn==0.22.1
 vtk==9.0.1
 mayavi==4.7.2
-ray[tune]==0.8.7
+ray[tune]==0.8.0

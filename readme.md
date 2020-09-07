@@ -23,8 +23,9 @@ The [dataset of the skewed lid driven cavity benchmark](dataset) is available to
 Python 3.6.8 with dependencies listed in [`requirements.txt`](requirements.txt) was used and tested on Linux, macOS and Windows.
 It is highly recommended to use a virtual environment, for example in the project root:
 ```shell
-python -m virtualenv venv
+python -m venv venv
 source venv/bin/activate
+pip install --upgrade pip
 pip install --upgrade -r requirements.txt
 ```
 Minor versions of dependencies should not be ignored.
