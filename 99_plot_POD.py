@@ -5,6 +5,9 @@ behaviour of the other datasets is. Dissimilar behaviour- the datasets do not
 cover the sample space well enough i.e. can be seen as not from the same
 distribution. See Eq. (17), (22)-(24) in paper.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 from matplotlib import pyplot

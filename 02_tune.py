@@ -11,6 +11,9 @@ sensible hyperparameters, namely, hidden_size=40 and lr=1e-2 which were found
 close to optimal in the paper. However, the script 03_plot_tune.py will not
 work.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 import numpy as np

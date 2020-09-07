@@ -1,7 +1,10 @@
 """
-Contains utilities.
-Responsible for directory structure, saving and loading, snapshot manipulation.
+Contains utilities responsible for directory structure,
+saving and loading and snapshot manipulation.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 from config import *
 from models import RBF, GPR, FNN
 models = {

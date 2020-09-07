@@ -1,3 +1,9 @@
+"""
+Model for Gauss process regression (GPR).
+"""
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import numpy as np
 import pickle
 from sklearn.multioutput import MultiOutputRegressor

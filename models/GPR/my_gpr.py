@@ -1,6 +1,7 @@
-"""Gaussian processes regression. """
-
-# Authors: Jan Hendrik Metzen <jhm@informatik.uni-bremen.de>
+"""
+Modified gaussian processes regression to increase optimizer iterations.
+"""
+# Author: Jan Hendrik Metzen <jhm@informatik.uni-bremen.de>
 # Modified by: Arturs Berzins <berzins@cats.rwth-aachen.de>
 # License: BSD 3 clause
 

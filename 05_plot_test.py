@@ -1,6 +1,8 @@
 """
 Plot the performance on the test set as in Figures 6, 12, 18.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
 
 import config
 import utils

@@ -1,3 +1,11 @@
+"""
+Model for a feedworward neural network (FNN).
+This file mainly concerns with training, storing and loading the model.
+The architecture itself is defined in model.py.
+"""
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import torch
 from torch.optim.lr_scheduler import LambdaLR
 from models.FNN import data_loader

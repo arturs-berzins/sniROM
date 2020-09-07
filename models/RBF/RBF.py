@@ -1,3 +1,9 @@
+"""
+Model for radial basis function (RBF) interpolation.
+"""
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import numpy as np
 import pickle
 import scipy.interpolate

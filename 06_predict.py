@@ -4,6 +4,9 @@ evaluation). Currently, this script uses the test_Hesthaven_Ubbiali set as in
 Figure 8. For different problems the dataset and idxs of interest must be
 specified accordingly.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 import numpy as np

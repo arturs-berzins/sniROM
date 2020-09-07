@@ -1,3 +1,10 @@
+"""
+Configuration describing the specific problem.
+"""
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
+
 # For core functionality
 datasets = ['train', 'validate', 'test', 'test_Hesthaven_Ubbiali']
 num_snapshots = {

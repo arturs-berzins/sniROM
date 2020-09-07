@@ -4,6 +4,9 @@ viewed in paraview.
 For problems other than skewed lid driven cavity, adjust how the components
 are extracted from the bases (currently velocity and pressur in lines 43-54).
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 from tvtk.api import tvtk, write_data

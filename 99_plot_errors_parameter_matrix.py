@@ -5,6 +5,9 @@ Errors are represented by areas of the circles.
 Observe the behavior of model and projection errors over the parameter space.
 The errors are likely to be worse at the extremes of the space.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 from matplotlib import pyplot

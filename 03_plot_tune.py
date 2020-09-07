@@ -1,6 +1,9 @@
 """
 Plot the results of FNN tuning as in Figures 5, 11, 17.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 import os

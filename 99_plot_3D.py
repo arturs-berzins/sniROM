@@ -3,6 +3,9 @@ Creates a 3D plot of learnt manifolds over features.
 Very useful for building intuition of the dataset and models.
 All features and targets are standardized.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 import numpy as np

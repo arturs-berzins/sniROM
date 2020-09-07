@@ -1,3 +1,9 @@
+"""
+Contains the architecture of a simple FNN.
+"""
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import torch.nn as nn
 
 class Model(nn.Module):

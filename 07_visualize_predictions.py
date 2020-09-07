@@ -8,8 +8,11 @@ extracted from the snapshots.
 However, this code can be reused for other problems with minor adjustments, as
 long as the according mxyz and mien files are provided under /visualization.
 
-Code structure is derived from https://stackoverflow.com/a/30658723
+Approach via tvtk is inspired by https://stackoverflow.com/a/30658723
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 from tvtk.api import tvtk, write_data

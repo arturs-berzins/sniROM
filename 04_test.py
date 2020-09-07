@@ -4,6 +4,9 @@ dataset.
 Loading the FNN automatically detects the best hyperparameter configuration from
 the tuning.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 import numpy as np

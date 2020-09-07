@@ -1,8 +1,13 @@
+"""
+Data loader for torch.
+"""
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import torch
 import torch.utils.data
 
 def create_loader(features_np, targets_np, batch_size, shuffle):
-    ### DATASET ###
     # https://stackoverflow.com/questions/41924453/pytorch-how-to-use-dataloaders-for-custom-datasets
 
     # Convert from numpy array to torch tensor

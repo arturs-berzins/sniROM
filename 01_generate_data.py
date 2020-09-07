@@ -3,6 +3,9 @@ Converts the dataset into features and targets for the regression models.
 Stores these, as well as the feature scaler, POD matrices and projection errors
 under /data. See Section 2.
 """
+# Author: Arturs Berzins <berzins@cats.rwth-aachen.de>
+# License: BSD 3 clause
+
 import config
 import utils
 import numpy as np
