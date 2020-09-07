@@ -7,7 +7,6 @@ The errors are likely to be worse at the extremes of the space.
 """
 import config
 import utils
-import numpy as np
 from matplotlib import pyplot
 
 dataset = 'test'

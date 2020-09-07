@@ -1,13 +1,11 @@
-import numpy as np
 import torch
 from torch.optim.lr_scheduler import LambdaLR
-from torch import autograd
 from models.FNN import data_loader
 from models.FNN.model import Model
 import os
 import pickle
 from ray import tune
-torch.manual_seed(0)
+#torch.manual_seed(0)
 
 class FNN: 
     def __init__(self):
@@ -27,12 +25,15 @@ class FNN:
         self.config['n_hidden']         = 2
         self.config['hidden_size']      = 40
         self.config['batch_size']       = 10
-        self.config['lr']               = 0.01
+        self.config['lr']               = 1e-2
         self.config['regularization']   = 1e-10
         # Overwrite internal config values given in the external config
         if config:
             for key in config.keys():
                 self.config[key] = config[key]
+        
+        # Assume we're using ray.tune at first
+        self.tuning = True
         
         ## Model
         self.config['input_size'] = self.features_np['train'].shape[1]
@@ -101,8 +102,11 @@ class FNN:
                 print('eps_reg: Epoch [{}/{}], LR: {:.2e}, Train loss: {:.2e}, Validate loss: {:.2e}'
                     .format(epoch+1, self.num_epochs, self.scheduler.get_lr()[0], train_loss.item()**0.5, validate_loss.item()**0.5))
                 
-                tune.track.log(mean_loss = validate_loss.item(), episodes_this_iter = 10)
-                    
+                if self.tuning:
+                    try:
+                        tune.track.log(mean_loss = validate_loss.item(), episodes_this_iter = 10)
+                    except:
+                        self.tuning = False
         return self
 
     def eps_reg_sq(self, outputs, targets):
@@ -127,9 +131,13 @@ class FNN:
             return u_rb
     
     def save(self, model_dir, component):
-        path_config     = os.path.join(tune.track.trial_dir(),'config')
-        path_state_dict = os.path.join(tune.track.trial_dir(),'state_dict')
-        
+        try:
+            path_config     = os.path.join(tune.track.trial_dir(),'config')
+            path_state_dict = os.path.join(tune.track.trial_dir(),'state_dict')
+        except:
+            # not tuning
+            path_config     = os.path.join(model_dir, 'FNN', component,'config')
+            path_state_dict = os.path.join(model_dir, 'FNN', component,'state_dict')
         with open(path_config, 'wb+') as f:
             pickle.dump(self.config, f)
         
@@ -139,14 +147,19 @@ class FNN:
         '''
         Find and loads the best model from ray.tune analysis results.
         '''
-        path_analysis = os.path.join(model_dir,'FNN',component)
-        analysis = tune.Analysis(path_analysis)
-        df_temp = analysis.dataframe()
-        idx = df_temp['mean_loss'].idxmin()
-        logdir = df_temp.loc[idx]['logdir']
-        
-        path_config     = os.path.join(logdir,'config')
-        path_state_dict = os.path.join(logdir,'state_dict')
+        try:
+            path_analysis = os.path.join(model_dir,'FNN',component)
+            analysis = tune.Analysis(path_analysis)
+            df_temp = analysis.dataframe()
+            idx = df_temp['mean_loss'].idxmin()
+            logdir = df_temp.loc[idx]['logdir']
+            path_config     = os.path.join(logdir,'config')
+            path_state_dict = os.path.join(logdir,'state_dict')
+        except:
+            # no tuning records
+            path_config     = os.path.join(model_dir, 'FNN', component,'config')
+            path_state_dict = os.path.join(model_dir, 'FNN', component,'state_dict')
+            
         
         with open(path_config, 'rb') as f:
             config = pickle.load(f)

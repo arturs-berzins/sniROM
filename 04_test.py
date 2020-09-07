@@ -7,7 +7,6 @@ the tuning.
 import config
 import utils
 import numpy as np
-import os
 import pandas as pd
 
 def main():

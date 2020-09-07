@@ -4,13 +4,19 @@ tune the FNN.
 ray.tune start a parallel process for each configuration, so the tuning is
 performed pretty quickly, if many processor threads are available. However,
 modifying the tune_config can alleviate the computational burden.
+
+Alternatively, the tuning can be disabled altogether by moving the 'FNN' key
+from models_to_be_tuned to models_to_be_trained. This will automatically use a
+sensible hyperparameters, namely, hidden_size=40 and lr=1e-2 which were found
+close to optimal in the paper. However, the script 03_plot_tune.py will not
+work.
 """
 import config
 import utils
 import numpy as np
-import torch
 from os.path import join
 from ray import tune
+import time
 
 utils.set_up_model_directories()
 
@@ -23,7 +29,6 @@ tune_config['FNN'] = {
  'lr':          tune.grid_search((10**np.linspace(-4,0,5)).tolist()),
  'hidden_size': tune.grid_search(np.linspace(10,50,9,dtype=int).tolist())
   }
-assert set(tune_config.keys()) == set(models_to_be_tuned), "tune_config is incomplete"
 
 def main():
     
@@ -37,21 +42,20 @@ def main():
             features[dataset] = utils.load_features(dataset)
             targets[dataset]  = utils.load_targets(dataset, component)
         
-        input_size  = features['train'].shape[1] # = len(config.mu_range)
-        output_size =  targets['train'].shape[1] # = config.num_basis[component]
-        
-        
         ## Wrapper for the training routine
-        def train_wrapper(config):
+        def train_wrapper(tune_config):
             model_constructor = utils.models[model_key]
             model = model_constructor()
             model.set_data(features, targets, D, denom_sq)
-            model.train(config)
+            model.train(tune_config)
             model.save(utils.model_dir, component)
         
         for model_key in models_to_be_trained:
             ## Train without a tuning config
+            t0 = time.time()
             train_wrapper(None)
+            dt = time.time() - t0
+            print(F"Trained {model_key} for {component} in {dt:.4} s")
             
         for model_key in models_to_be_tuned:
             ## Tune using the defined tuning config

@@ -6,7 +6,6 @@ The errors are likely to be worse at the extremes of the space.
 """
 import config
 import utils
-import numpy as np
 from matplotlib import pyplot
 
 dataset = 'test'
@@ -19,7 +18,7 @@ df = utils.load_error_table(dataset)
 
 P = len(config.mu_names)
 fig, axes = pyplot.subplots(len(config.components),P,sharex='col',sharey='row')
-fig.suptitle('Standardized errors over features')
+fig.suptitle('Standardized errors over standardized features')
 cmap = pyplot.get_cmap('tab10')
 
 features = utils.load_features(dataset)

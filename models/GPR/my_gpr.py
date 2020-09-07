@@ -1,14 +1,9 @@
 """Gaussian processes regression. """
 
 # Authors: Jan Hendrik Metzen <jhm@informatik.uni-bremen.de>
-#
+# Modified by: Arturs Berzins <berzins@cats.rwth-aachen.de>
 # License: BSD 3 clause
 
-import warnings
-from operator import itemgetter
-
-import numpy as np
-from scipy.linalg import cholesky, cho_solve, solve_triangular
 import scipy.optimize
 from sklearn.utils.optimize import _check_optimize_result
 

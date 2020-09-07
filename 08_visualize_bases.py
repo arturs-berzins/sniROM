@@ -43,7 +43,6 @@ def main():
         # Velocity
         velocity = V['u'][:,idx]
         velocity = velocity.reshape(nn, 2)
-        #import pdb; pdb.set_trace()
         velocity = np.pad(velocity, [(0,0),(0,3-nsd)])
         polydata.point_data.add_array(velocity)
         polydata.point_data.get_array(0).name = 'velocity'

@@ -7,11 +7,7 @@ import utils
 import matplotlib
 from matplotlib import pyplot
 import numpy as np
-import pandas as pd
-from matplotlib import ticker, cm, colors
-from matplotlib.ticker import FormatStrFormatter, LogLocator, FixedLocator, NullFormatter
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import pickle
+from matplotlib.ticker import FixedLocator, NullFormatter
 
 preamble = (
     r'\usepackage{amsmath}'

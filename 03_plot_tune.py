@@ -8,10 +8,8 @@ import numpy as np
 import pandas as pd
 from ray import tune
 import matplotlib
-from matplotlib import pyplot
-from matplotlib import ticker, cm, colors
-from matplotlib.ticker import MultipleLocator, FormatStrFormatter, LogLocator, FixedLocator
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib import pyplot, colors
+from matplotlib.ticker import FixedLocator
 import warnings
 
 model_key = 'FNN'

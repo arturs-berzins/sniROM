@@ -4,7 +4,6 @@ from sklearn.multioutput import MultiOutputRegressor
 #from sklearn.gaussian_process import GaussianProcessRegressor
 from models.GPR.my_gpr import myGaussianProcessRegressor as GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, WhiteKernel
-from ray import tune
 import os
 
 class GPR:

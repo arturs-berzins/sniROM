@@ -6,9 +6,8 @@ All features and targets are standardized.
 import config
 import utils
 import numpy as np
-from matplotlib import pyplot, cm
+from matplotlib import pyplot
 from matplotlib.widgets import Slider
-from mpl_toolkits.mplot3d import Axes3D
 
 # Plot along these two parameters:
 parameter_indices_to_plot = [0,1]

@@ -20,7 +20,18 @@ The [dataset of the skewed lid driven cavity benchmark](dataset) is available to
 
 
 ## Setup
-Python 3.6.8 with dependencies listed in [requirements.txt](requirements.txt) was used, but other minor versions will likely work fine as well. The dependencies can be installed via `pip install -r requirements.txt`.
+Python 3.6.8 with dependencies listed in [requirements.txt](requirements.txt) was used.
+The three heavy dependencies are 
+- torch     [web](https://pytorch.org/get-started/locally/)
+- mayavi    pip install mayavi? potentially pip install vtk first
+- ray       pip install ray[tune] (windows support is experimental)
+The other more common ones are 
+- pandas
+- numpy         1.17.3!
+- scipy         1.4.1!
+- matplotlib    3.3.1!
+- scikit_learn  0.23.2!
+!The dependencies can be installed via `pip install -r requirements.txt`.
 If you wish to create an isolated virtual environment, use either [venv](https://docs.python.org/3/tutorial/venv.html) or [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
 The visualization is done using [ParaView](https://www.paraview.org/download/), which has to be installed separately to view the `.vtp` files. If you wish to use another visualization pipeline, you can also remove `mayavi` (containing `tvtk.api`) from the requirements. In that case, you will need to modify the visualization scripts [`07`](07_visualize_predictions.py) and [`08`](08_visualize_bases.py) accordingly.

@@ -7,7 +7,6 @@ distribution. See Eq. (17), (22)-(24) in paper.
 """
 import config
 import utils
-import numpy as np
 from matplotlib import pyplot
 
 
