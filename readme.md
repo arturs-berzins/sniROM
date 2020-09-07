@@ -20,23 +20,19 @@ The [dataset of the skewed lid driven cavity benchmark](dataset) is available to
 
 
 ## Setup
-Python 3.6.8 with dependencies listed in [requirements.txt](requirements.txt) was used.
-The three heavy dependencies are 
-- torch     [web](https://pytorch.org/get-started/locally/)
-- mayavi    pip install mayavi? potentially pip install vtk first
-- ray       pip install ray[tune] (windows support is experimental)
-The other more common ones are 
-- pandas
-- numpy         1.17.3!
-- scipy         1.4.1!
-- matplotlib    3.3.1!
-- scikit_learn  0.23.2!
-!The dependencies can be installed via `pip install -r requirements.txt`.
-If you wish to create an isolated virtual environment, use either [venv](https://docs.python.org/3/tutorial/venv.html) or [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+Python 3.6.8 with dependencies listed in [`requirements.txt`](requirements.txt) was used and tested on Linux, macOS and Windows.
+It is highly recommended to use a virtual environment, for example in the project root:
+```shell
+python -m virtualenv venv
+source venv/bin/activate
+pip install --upgrade -r requirements.txt
+```
+Minor versions of dependencies should not be ignored.
+- The largest dependency, namely, `PyTorch` is not included in `requirements.txt` since it requires a more specific installation. Please see the installation guide [here](https://pytorch.org/get-started/locally/). Versions `1.0.1.post2` on Linux and `1.6.0+cpu` on Windows were tested succesfully. CUDA is theoretically supported in the implementation, but the ANN and the datasets are too small to benefit from this.
+- `ray.tune` currently has only experimental support on Windows. If you can't get it to run properly on your machine (as indicated by errors during `python 02_tune.py`), it is possible to skip the tuning procedure altogether and instead use the near-optimal hyperparameter configuration identified in the paper. See the comment in [`02_tune.py`](02_tune.py) for more information.
+- The visualization is done using [ParaView](https://www.paraview.org/download/), which has to be installed separately to view the `.vtp` files. If you wish to use another visualization pipeline, you will not need ParaView and can also remove `mayavi` (containing `tvtk.api`) from the requirements. In that case, you will need to modify the visualization scripts [`07`](07_visualize_predictions.py) and [`08`](08_visualize_bases.py) to your liking.
 
-The visualization is done using [ParaView](https://www.paraview.org/download/), which has to be installed separately to view the `.vtp` files. If you wish to use another visualization pipeline, you can also remove `mayavi` (containing `tvtk.api`) from the requirements. In that case, you will need to modify the visualization scripts [`07`](07_visualize_predictions.py) and [`08`](08_visualize_bases.py) accordingly.
-
-After a successful setup, simply run the scripts sequentially.
+After a successful setup, simply run the scripts sequentially from the project root folder.
 
 ## Applying to your dataset
 The code should be easily transferable to other datasets. The dataset must be provided in the format described in [`dataset/readme.md`](dataset/readme.md) and the [`config.py`](config.py) must be adjusted accordingly. This is enough to run the core scripts `01`-`05`.
