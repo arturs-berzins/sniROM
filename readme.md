@@ -21,15 +21,17 @@ The [dataset of the skewed lid driven cavity benchmark](dataset) is available to
 
 ## Setup
 Python 3.6.8 with dependencies listed in [`requirements.txt`](requirements.txt) was used and tested on Linux, macOS and Windows.
-It is highly recommended to use a virtual environment, for example in the project root:
+It is highly recommended to use a virtual environment:
 ```shell
+git clone https://github.com/arturs-berzins/sniROM.git
+cd sniROM
 python -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip install --upgrade -r requirements.txt
 ```
-Minor versions of dependencies should not be ignored.
-- The largest dependency, namely, `PyTorch` is not included in `requirements.txt` since it requires a more specific installation. Please see the installation guide [here](https://pytorch.org/get-started/locally/). Versions `1.0.1.post2` on Linux and `1.6.0+cpu` on Windows were tested succesfully. CUDA is theoretically supported in the implementation, but the ANN and the datasets are too small to benefit from this.
+Versions of dependencies should not be ignored.
+- The largest dependency, namely, `PyTorch` is not included in `requirements.txt` since it requires a more platform-specific installation. Please see the installation guide [here](https://pytorch.org/get-started/locally/). Versions `1.0.1.post2` on Linux and `1.6.0+cpu` on Windows were tested succesfully. CUDA is theoretically supported in the implementation, but the ANN and the datasets are too small to benefit from hardware acceleration.
 - `ray.tune` currently has only experimental support on Windows. If you can't get it to run properly on your machine (as indicated by errors during `python 02_tune.py`), it is possible to skip the tuning procedure altogether and instead use the near-optimal hyperparameter configuration identified in the paper. See the comment in [`02_tune.py`](02_tune.py) for more information.
 - The visualization is done using [ParaView](https://www.paraview.org/download/), which has to be installed separately to view the `.vtp` files. If you wish to use another visualization pipeline, you will not need ParaView and can also remove `mayavi` (containing `tvtk.api`) from the requirements. In that case, you will need to modify the visualization scripts [`07`](07_visualize_predictions.py) and [`08`](08_visualize_bases.py) to your liking.
 
