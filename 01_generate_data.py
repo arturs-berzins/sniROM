@@ -85,6 +85,10 @@ def compute_error_POD_sq(S, V, D):
 
 
 def do_POD(S):
+    '''
+    Compute the principal orthogonal decomposition (POD) / singular value decomposition (SVD)
+    of a snapshot matrix S, where each snapshot is a column
+    '''
     t0 = time.time()
     
     N   = S.shape[1]      # number of snapshots
@@ -100,7 +104,7 @@ def do_POD(S):
         idx = eigenvalues.argsort()[::-1]      # indices to sort in decreasing order
         eigenvalues = eigenvalues[idx]         # sort eigenvalues in decreasing order
         eigenvectors = eigenvectors[:, idx]    # sort eigenvectors correspondigly
-        sig = abs(eigenvalues)**0.5
+        sig = np.sqrt(abs(eigenvalues))
         #TODO: deal with numerically negative eigenvalues. Truncate to 0?
         
         V = eigenvectors[:,0:L]         # Reduced basis matrix from left singular vectors
@@ -116,12 +120,11 @@ def do_POD(S):
         eigenvalues = eigenvalues[idx]         # sort eigenvalues in decreasing order
         eigenvectors = eigenvectors[:, idx]    # sort eigenvectors correspondigly
         
-        W = np.array([(abs(eigenvalues[l]) ** -0.5 * np.matmul(S/(N**0.5), eigenvectors[:,l])).T for l in range(L)]).T
-        sig = abs(eigenvalues)**0.5   
+        W = S@eigenvectors/(np.sqrt(N)*np.sqrt(abs(eigenvalues)))
+        sig = np.sqrt(eigenvalues)   
         
-        V = W[:,0:L]                    # Reduced basis matrix from left singular vectors
-        D = sig[0:L]                    # Singular values
-        # TODO: rewrite in same notation as in paper
+        V = W[:,:L]                    # Reduced basis matrix from left singular vectors
+        D = sig[:L]                    # Singular values
     
     dt = time.time() - t0
     print(f'Computed POD in {dt:.4} s')
